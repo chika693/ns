@@ -1,0 +1,1555 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Chika Otisi</title>
+	<link rel="stylesheet" type="text/css" href="css/styles.css">
+<!-- after you create your icon from the website favicon.cc, you will be able to download it, then pull up the folder where the css folder and the index.html doc are on the same hierarchical level. and then drag the downloaded icon into that area. you should now be able to see it in the folder sidebar of your texteditor. now in order for you to incorporate the favicon you will have to create another link tag, and this time instead of the relationship being a style sheet, it is going to be a relationship of "icon"
+
+	itwill look like this:
+		<link rel="icon" type="text/css" href="favicon.ico">
+-->
+	<link rel="icon" type="text/css" href="favicon.ico">
+	<link href="https://fonts.googleapis.com/css?family=Merriweather|Montserrat|Sacramento&display=swap" rel="stylesheet">
+</head>
+<body>
+
+<!------------------------ DIV ----------------------->
+<!-- stands for content division element- basically allows you to split up or divide your content into seperate containers or boxes, so that you can affect the layout of each box, seperately.--->
+
+
+
+<!--------------------IMGS ---------------------------->
+
+<!------- here inside of the top container we are going to have a cloud
+	image on top of our name and programer, and we are going to have one underneath that. we are also going to have a mountain underneath the second cloud. 
+
+
+now when we look at the page that we just refreshed after entering the new images in the order specified above (just incase for future reference will show current code line below:
+	<div>
+		<img src="images/cloud.png" alt="cloud-img">
+		<h1>I'm Chika</h1>
+		<h1>A Programmer</h1>
+		<img src="images/cloud.png" alt="cloud-img">
+		<img src="images/mountain.png" alt="mountain-img">
+	</div>)
+we see that the first cloud that is above our name seems to have taken up its own line, out name has taken up the next line, followed by our description of being a programmer on the next line... but when we head to the next liine we see that something peculiar happens, we see that the secound cloud is side by side with the mountain... instead of taking up its own line.... that is where display comes in... lets talk about it.
+-->
+
+<!------------------------- DISPLAY (css) ------------------------>
+<!--- now the display property has four different types of values these values are:
+
+				----------- Block -----------
+	-block
+		block elements are those that take up essentially the whole width of the screen on a webpage.
+			(<p></p>, <h1>-<h6>, <div></div>, <ol></ol>, <ul></ul>, <li></li>, <form></form>)
+
+				----------- Inline -----------
+	-inline
+		inline elements, unlike block elements as specified above, a inline display element only takes up as much space as it needs to in height and in its width.
+			(<span></span> <img src=""> <a href=""></a>)
+now you might wonder "why would we ever use block elements if we can simply use inline element? by the look of things inline seems to be much more flexable."
+
+
+well there is just one problem, with inline elements you can't change the width, but you very much do so with the block elements even though it still doesn't let any other element sit on the same line. But we are still even able to change the default display settings to fit accordingly. so we would change a block element like p's display from block to inline (this will grant the p tag the abillity to share its line with other elements that are inline- but we lose the ability to dictate its width...) as we can change the display property of the span element from inline to block (this creates the enviornemt where the span takes up the entire width of the screen allowing no other element on the same line instead of sharing the line as it once did- giving us the ability to dictate its width.)
+
+but what if we wanted a property value relationship that would allow elements to occupy the same line, and still have the ability to set their width (combining the best of both the inline and block value.... that is where the value of "inline-block" comes in.)
+
+				------------ Inline-Block ----------
+	-inline-block
+		inline-block elements have the best of both worlds we are allowed to share the same line as well as be affected by width changes. this value could come in handy.
+
+				------------- None ------------------
+	-none
+		none value just gets rid of our element. literally removing the element from the websie as if it didn't or never existed.
+
+--------------------------- VISIBILITY --------------------------
+
+this is another way to affect somethings presence on the screen, in the case above, we were able to remove an element completely off the screen with the combination of the display property and it's value set to none:
+	.second-p{
+		display:none;
+	}
+	-in this case we were able to completely remove the element off the page as if it was never written in the first place, and naturally it look that way on the page as the other elements on the page readjusted their positions to fill in the space.
+
+LIKEWISE 
+we can use a property/value combination of "visibility:hidden;" to again remove the element off of the page but except this time, we actually instead the elements shifting around to readjust to the removed element event, the elements in this case remain where they are, leaving an empty space where the removed element just was... (it's still there, it is just hidden.)
+	.second-p{
+		visibility:hidden;
+	}
+
+->
+
+now if we look at the page and we turn on our pestiside tool that we downloaded for chrome, we can see that the box around the cloud, is only as large as the image, the same with the box around the mountain... but we notice that the boxes around the h1 and p elements are as long as the width of the page, so... whats going on here?... well by default some elements are whats called block display (h1, p, etc...) and block elements are those that take up essentially the whole width of the screen on a webpage. essentially blocking out any other elements from sitting next to it on the left and on the right.
+
+now lets look at something else.. for say that we wanted to effect a specific area of a block level element to be different than other parts - example:
+		wanting to underline the word "Pro" in the p block level element "A Programmer."
+
+what would i have to do?
+
+some might think that having three p tags would be the solution to the answer (<p>A</p> <p>Pro</p> <p>grammer.</p>) -like so, but this is in fact wrong because remember each paragraph tag is a block level element so it will end up splitting the words into three different lines, which is not what we want.
+
+what we would actually do is..
+use another html element called a span (<span></span>) we will wrap it
+around the word pro, and give that span a class of lets say "pro" and then use css to add a text-decoration:underline; to that class
+
+
+---------------------- HTML POSITIONING --------------------------
+
+we have to realize that even without css, your html elements already has pre-defined rules for how it should be displayed on your web page, even if you don't have any css.
+
+and we have to understand how things get positioned by default before we can go on to change it- to bend it to our will without getting confused and getting stuck.
+
+.... so lets take a look at these rules....
+
+rules:
+	1. Content is Everything
+			-now we know that inline elements only take up as much width and height as the content, 
+				so if you have a span that contains a long word, then it has a large width. if you have a span that contains a short word, then it has a short width.
+
+			-now with block elements, even though they take up 100% of the width, the height is still determined by the content.
+				so if you have a really super large font, for your h1 or for your paragraph, then that box-modle is going to take a lot more height than if it was a smaller font.
+		so your content is the first thing that determines how large things gets displayed and what the height and the width will be. and this is despite any css.
+
+	2. Order Comes From Code
+			-the order of the elements on screen come from your html code:
+			<h1> </h1>
+			<p> </p>
+			<p> </p>
+			<p> </p>
+			<img>
+				in the case above we have an h1, 3 ps and an img, this is how we've written our code in our html file, and this is how it gets rendered in that order.
+
+			now if we change the order at put the image above the h1:
+			<img>
+			<h1> </h1>
+			<p> </p>
+			<p> </p>
+			<p> </p>
+				then our website is going to display in a correspoding way. so the default layout order is determined by your code.
+
+	3. Children Sit On Parents
+			-imagine you have a div (<div> </div>) that is colored in red, now if inside this div, i add an h1 that has some text, then that h1 is going to be  on top of the div when it is displayed, it is more towards the viewer and away from the screen.
+					<div>
+						<h1>a programmer.</h1>
+					</div>
+				so this kind of introduces the concept of the Zed-Index. 
+				- we know that on screen we have an x axis and a y axis but there is also a z axis, and that z axis determins which element will be displayed on the other one.
+
+				because if in this case the div was in front of the h1, then we wouldn't see the h1 at all. so by default all html elements, that are children, they will sit on top of the parent element. so if we modify this code even further..
+					<div>
+						<h1>a <span>pro</span>grammer.</h1>
+					</div>
+				we add a span nested inside that h1, then the word inside the span is going to be on top of the h1. so we have 3 elements on the screen so far:
+					- a <div></div>
+					- a <h1></h1>
+					- and a <span></span>
+				and going from the screen towards the viewer, we first have the div, then the h1 and then the span, from top to the bottom of the hierarchy it comes closer and closer towards to viewer.
+
+SO THESE 3 ARE THE DEFAULT RULE ON HOW THINGS GET RENDERD ON THE SCREEN, JUST BASED ON YOUR HTML CODE.
+
+and this brings us to the position property
+
+-------------------------- POSITION ---------------------------
+
+now you can also set a css property, which is the position property, in order to position elements on screen the way that you want it to instead of just going along with the default layout, and in most cases you are going to want to make changes to the default layout. So lets look at some of the ways in which we can change this position property:
+		-static
+		-relative
+		-absolute
+		-fixed
+
+--- Coordinate (properties)-----
+
+		-top
+		-left
+		-bottom
+		-right
+we can set values for these in order to determine how we want to move our element
+
+
+these are the four that we are going to talk about
+
+
+					---------- STATIC ------------
+
+now this one we have actually already talked about, ALL HTML ELEMENTS ARE STATIC IN THEIR POSITION BY DEFAULT. and statci just means:
+
+		"Go along with the html rules and keep to the default html flow"
+
+and that is what we see when we just have html without any css or if we don't changed this position property at all.
+
+					---------- RELATIVE ----------
+
+what this allows us to do is to position the element that we select, relative to how it would've been positoned while static...
+
+in other words, the relative positioning, is relative to where the element would've been displayed if it was just following the natural html flow.
+	exmple:
+		lets say we have a box that we created in css, we gave it a width of 100px, a height of 100px, and a color or red and it apprears the the top left side of the screen, just like any other normal html elemnt without any css would do: 
+			box-1{
+				width:100px;
+				height:100px;
+				background-color:red;
+			}
+
+		now lets add the positon relaive and a coordinate of right:200px; to it:
+			box-1{
+				width:100px;
+				height:100px;
+				background-color:red;
+				position:relative;
+				right:200px;
+			}
+		the box would actually be found no where on the visible page that we can see because it would have been pushed to the right 200px from its orginal position. its orginal position is considered to be relative.
+
+
+so lets say that we have got an image that is positioned using the relative layout, then we set the top coordianate property to 20px:
+		
+		img{
+			position:relative;
+			top:20px;
+		}
+		this means that it will get moved down by 20px from the top
+
+and if we change the left property 20px:
+
+		img{
+			position:relative;
+			left:20px
+		}
+		this means it will get pushed to the right by 20px
+
+if we change the right property to have a value of 20px:
+
+		img{
+			position:relative;
+			right:20px;
+		}
+		this means that it will get pushed to the left by 20px
+
+if we change the bottom property to have a value of 20px:
+
+		img{
+			position:relative;
+			bottom:20px;
+		}
+		this means that it will get pushed to the top by 20px
+
+------------------- 2 IMPORTANT THINGS TO REMEMBER WHEN DEALING WITH RELATIVE POSITIONING -----------------------------------------------
+
+	1. when you move an element that has a relative position:
+
+		img{
+			position:relative;
+			top:50px;
+		}
+		...see in this case we are pushing it down by 50px, IT DOES NOT EFFECT THE POSITION OF ANYTHING ELSE ON SCREEN, it is as if the old position was kept and everything else just flows around it (sort of the like the visible:hidden; combinateion but instead of the original element disappearing, it is still able to be see and has been moved to a new positon... this could be a problem if there are other elements on the screen and the position that you sent the relative element to has a different element there because then it overlaps. and thats bad.)
+
+	2. the other thing to remember is that when we change the coordinate properties for example in this case "top:50px"(as shown above in the example on 1.) -what this really means is that we are taking the top of where that image used to be and we are giving it a 50px margin from the top of our current image, so if you think back to the box modle when we spoke about margin, this is the best way of thinking about these coordinates.
+
+				----------- ABSOLUTE -----------
+
+let's talk about the using the absolute position, in this case imagine that we have got an image that is inside of a div that's red:
+			
+			div {
+				height:xpx;
+				width:xpx;
+				background-color:red
+				position:relative;
+			}
+			img{
+				position:absolute;
+				right:30px;
+			}
+looking at it from the structure of our page in the html, the images (<img>) is neseted inside of the div(<div></div>) and in the example above we see that we have given its propert:value; one of position:absolute. 
+
+now if we change the img's right coordinate property into 30px, this time it is not going to shift left by 30px... infact its going to shift to the right of the screen and be away from the right edge of the screen/container by 30px;
+
+		this is because	with absolute positioning we are positioning the element (in this case the image elemnt <img>) RELATIVE TO ITS PARENT...
+			and in this case it's parent is the red div.
+
+	so we now have basically added a right margin of 30px between the image element and the parent div
+
+		admittingly, the name is a bit confusing, as I would have probably called absolute positioning - relative positioning, because we are always specifying a margin that is RELATIVE to it's parent..
+
+		BUT
+
+		i think the reason why they called it absolute positioning, is because in most cases, the parent is simply the entire body of the webpage,
+			so the position when using absolute positioning, looks like you are giving it a margin relative to the entire page.
+				which looks like you are changing the absolute position of it, but don't get confused about the naming, just remember that RELATIVE POSITIONING means that you are adding a margin, relative to where the element should've been.
+				but
+				ABSOLUTE POSITIONING means that you are adding a margin to its parent element.
+
+now besides the difference in how we are able to move elements: 
+
+RELATIVE: we move elements using the coordinates in respect to where it orginally was 
+
+and 
+
+ABSOLUTE: we move elements using the coordinates in respect to the parent element
+
+there are other things that also take place when using either one of the types of positiions.
+
+we notice that with using RELATIVE positioning it DOESN'T effect the flow of your html - So you would actually leave behind some sort of "ghost" element in the original postion even after the element has been placed else where the orginal space will still exist.
+
+we notice that with using ABSOLUTE positioning it DOES effect the flow of your html - in this case no "ghose" element will be left behind cause the other elements on the page the quickly re-adjust... basically the using the absolute positioning on an element is essentially taking that element out of the flow of the document and it is no longer consider a part of the natural flow of the document.
+
+------ ONE THING TO REMEMBER -------
+
+WHEN USING ABSOLUTE POSITIONING the parent doesn't have to be the body, it can actually be the closest element that has a POSITION of RELATIVE layout. for example:
+
+html
+	<body>
+		<div class="container">
+			<div class="red">
+			</div>
+		</div>
+
+		<div class="blue">
+		</div>
+
+		<div class="yellow">
+		</div>
+	</body>
+
+css
+	body{
+		margin:0;
+	}
+	.container{
+		position:relative
+		background-color:grey;
+		height:300px;
+		width:300px;
+	}
+	.red{
+		background-color:red;
+		height:100px;
+		width:100px;
+		position:absolute;
+		top:0;
+		left:200px;
+	}
+	.blue{
+		background-color:blue;
+		height:100px;
+		width:100px;
+		position:absolute;
+		top:0
+		left:100px;
+	}
+	.yellow{
+		background-color:yellow;
+		height:100px;
+		width:100px;
+		position:absolute;
+		top:0;
+		left:0;
+	}
+you will notice that the design for our webpage has changed and quite dramatically so. because now our red square is a child of that parent "container". and now it is defining it's position relative to that grey container square.
+so if i took that red box and deleted that left 200px and replaced it with a right:20px at this point, at this point it is no longer having a right margin of 20px relative to the edge of the body, but instead it is not having a right margin of 20px relative to the parent ("container" box.)
+and even though our blue and yellow squares are still relative to the body, because we haven't defined a verticle position for it, it's being pushed down by this element with a relative layout position. so in oder to change this we can give those other squares a top property of zero.
+
+
+					----------- FIXED -------------
+this is just how it sounds it, allows you to have a fixed position on the screen so no matter how far the user scrolls down or up the thing element with the poistion of fixed will always be in the same spot screen and always in sight for the user.
+
+for example:
+	if i changed the yellow's position from absolute to fixed, and i say that it is fixed to the top 
+	
+		.yellow{
+		background-color:yellow;
+		height:100px;
+		width:100px;
+		position:fixed;
+		top:0;
+		
+	}
+
+	then, if i scroll through the webpage it stay in its current position.
+
+THIS IS REALLY USEFUL IF YOU HAVE SOMETHING THAT YOU WANT TO BE FIXED LIKE:
+	-navbar
+	-sidbar
+	-social media links
+
+--------------------- BACK TO THE WEBSITE ----------------------
+
+			--------------- CENTERING ---------------
+
+1. now the first thing that we want to achieve is the cloud image,		the h1, the paragraph, the second cloud imgae and the mountain 		image.
+
+		so the easiest way of centering elements is by tapping into a property called "text-aling" and we are going to center it, and for this to effect everything, that property has to be set inside the parent container.
+
+		so we are going to use the body as the parent.
+
+		body{
+			text-align:center;
+		}
+
+	if we look now after we refresh the page we will see that out cloud1, h1, p, and other cloud and mountain (although side to side **cloud2 and mountain**) are centered.
+
+	now this works as long as we have inline-block (such as our images) or if we've got these full width/block elements (like our h1 and our p which goes from left edge to the right edge.)
+
+	now if i go into my styles.css code and i change the h1 to change its width to 10%
+		h1{
+			margin-top:0;
+			width:10%;
+		}
+	then when we go back to our webpage, we will notice that it is no longer being center aligned, dispite the fact that it is still inside of the body, which is asking for text-align to be center.
+
+		so what do we do in this case?
+
+	well the - - - - - - OTHER WAY OF CENTERING an element is by using the MARGIN.- - - - - - - - - - - - - - - - - - - - - - - - -
+	
+	there is a value called "auto" - which when applied, will center the element either vertically or horizontally... so in this case if we are looking for horizontal centering, then we can say that the margin top is 0, the margin right is "auto", the margin at the bottom is also 0, and the margin on the left, is again auto.
+		h1{
+			width:10%;
+			margin: 0 auto 0 auto;
+		}
+	once we refresh we will see that our element despite only being 10% of the width is now centered in the middle of our webpage, and when you open the dev tools and look at the box model, you can see that the top and bottom margins were set to be 0 by us and the left and the right margin we set automatically to what ever amount it needs to be in order to keep it in the center.
+
+	so very oftne when you are finding yourself trying to center elements you will probably end up using one of these methods...
+
+		so just to recap, text-align center inside the container or the parent element, will center everything inside (THAT DOESN'T HAVE A WIDTH SET)
+			- now if it is a block element and it has a width set, then you are going to have to center it using this auto value in the margin.
+				so in the same case we can also shorten the property/value combination of:
+
+					margin:0 auto 0 auto;
+
+				to
+
+					margin:0 auto;
+			and that will not change what we have already on the website at all, and this just considered short hand.
+
+		if you are intersted in learning more, you can head over to MDN and look at the css docs for margin, where they go through each of these
+
+		now we are going to revert back to how it was orginally with just the margin-top:0; and the text-align:center;
+
+
+2. Now the next thing that we have to tackle is that the last two images (cloud2 and mountain) are acting as if they are inline-blocks. and the cloud because it is in the flow of the html file is affecting the layout of the mountain... more specifically we want this mountain to be right in the middle and at the moment it is being pushed to the right by that cloud.
+
+	so what do we do?
+
+so in order to fix this we have to take this cloud out of the html flow. and once we've done that then the mountain will go back to being centered
+	in order to do this we will give the parent element a position:relative; and we give cloud2 a position of absolute.
+
+	so inside our index.html we are going to go to the second cloud and give it a class, that class is going to be called "bottom-cloud".
+	and while we are there we are also going to give the first cloud a class of "top-cloud".
+		we are going to put this in our styles.css file.
+
+	we are going to give the class of .bottom-cloud a position:absolute; and now if we refresh out page we see that
+	our cloud is positioned more or less randomly and or mountain is positioned perfectly in the center of the screen.
+
+	and this is exactly the layout we want for it.
+
+	we will actually change the position of the clouds a little bit and give the top of the container some padding so that elements on page can have some space.
+		.top-container{
+			background-color:#e4f9f5;
+			margin-top:100px;
+			position:relative;
+		}
+
+		.top-cloud{
+			position:absolute;
+			right:300px;
+			top:50px;
+		}
+		.bottom-cloud{
+			position:absolute;
+			left:300px;
+			bottom:300px;
+		}
+this will create the optimal layout in which we want, now the next thing that we are going to want do is style to font, by styling the font it can increase the font size and change the entire layout of the page so it is better to get it done right away.
+
+
+---------------------------- FONT ------------------------------
+
+Now one of the most important decisions you will have to make when you are designing your website is:
+	-WHAT ARE THE FONTS THAT YOU ARE GOING TO CHOOSE?
+
+and a lot of web designers will start off by figuring out a color pallet aswell as a font-scheme.
+
+so in this lesson we are going to learn about how we can change the fonts for all of our text in our website.
+
+NOW THERE ARE TWO MAJOR FONT-FAMILIES, AND THAT IS:
+
+		- SERIF FONT
+
+		- SANS-SERIF FONT
+
+	so you can tell serif and sans-serif fonts apart from each other by looking for the little feet and the edges of all of the letters. and these little feet are called serifs
+
+NOW WE CAN BROADLY DEFINE WHETHER WE WANT A SANS-SERIF OR A SERIF TYPE FACE FOR ANY TEXT ON OUR WEBSITE
+
+so lets go ahead and do that...
+
+we will go into our styles.css sheet and add a font-family, property into the body selector.
+
+BTW... ALL CODE IS REPRESENTED IN A MONOSPACE FONT, INSTEAD OF THE OTHER OF THE 5 MAJOR FONT-FAMILIES: cursive, fantansy, inherit, monospace, sans-serif, serif. THIS IS SO THAT WE CAN BE ABLE TO EASILY READ THE CODE... IF IT WERE IN ANY OTHER FAMILY THE LETTERS WOULD BE SQUISHED TOGETHER.
+
+	so we will use sans-serif and serif for our normal website styling but when we have code on the page we will use monospace.
+
+			now cursive and fantasy are two families that you are never going to really use, firstly because they have low readability and secondly because they generally don't look that great, when used in the body of a website.
+				so cursive is meant to be handwritten style of font
+				and fantasy is meant to remind you of avatar basically.
+
+WHEN WE TRY TO CHAGE OUR FONT-FAMILY TO HAVE A VALUE OF "SERIF" WHEN WE RELOAD AND GO BACK TO PAGE TO SEE, WE FIND THAT NOTHING HAS CHANGED... THIS IS BECAUSE BY DEFAULT THE FONT-FAMILY ON A WEBPAGE IS IN SERIF.... good to know.
+
+now if we change that to sans-serif however, we will get a noticable change, and those little feet that were on our text with the serif family in place have dispeared.
+
+	NOW FOR MOST BROWSERS THE DEFAULT SERIF, IS THE TIMES FONT
+		AND THE DEFUALT SANS-SERIF IS THE ARIAL FONT
+
+	but what if we liked the sans-serif typeface... but weren't too satisfied with just an arial font? what if we wanted a different sans-serif font.?
+		let's say that instead of arial i would rather have verdana as the font for my website?
+
+			what i can do is, instead of just specifying the "sans-serif" broadstroke family, i can add a specific font, or type face infront
+
+			for example if i want the verdana font:
+				
+				body{
+					maring:0;
+					text-align:center;
+					font-family:verdana, sans-serif;
+				}
+		and now if we head back over to our website and refresh, we can see that we are now using the verdana font.
+
+what this line of code does in relation to body is that it ask the browser to first render all of the font on the page in the body into the verdana font. now if for some reason the browser or the operating system that the user is using doesn't have this font installed, then it will default to whatever is the sans-serif font that is installed on their system... 
+		now that's a little bit scarry because that kind of means that i might think that i've designed my website to look the way i want it to (and i think it looks perfect) but on somebody else's system or browser, they might be getting a completely different style, with different:
+								- font-heights
+								- and just a differnt look and feel.
+
+
+		so there is such a thing called, WEBSAFE FONTS,
+			now what this means is that, there are a set of font-families, where most operating systems will be able to render it correctly
+			FOR THE SERIFS that includes:
+					-Georgia
+					-Times New Roman
+
+			FOR THE SANS-SERIF that includes:
+					-Arial
+					-Helvetica
+					-Comic Sans MS
+					-Impact
+					-etc.
+
+		although these are called websafe fonts, and it's basically saying that if you choose these sets of fonts, then you have the maximum chance of getting it rendered correctly, as you are seeing it yourself when you are designing it, BUT ACTUALLY, no font is 100% websafe
+		and if you headover to cssfontstack.com, you can see that somebody has actually pain-stakingly listed all of the fonts that are in common usage, and what is the percentage of users who have it installed seperated by their operating system.. 
+
+		on the website we see that some fonts are more popular with mac instead of pc and vise versa, so how do we conteract this?
+			we have to use fall back font-families... luckily we can grab them from the site, if we click on the icon thats to the right on the name link, we actually copy the chosen font and its fallbacks.
+				example:
+
+				body{
+					font-family:"Helvetica Neue",Helvetica,Arial,sans-serif;
+				}
+		since these are all of the same type of feel, these will give the users a similar experience no matter what their browser or operating system is.
+
+NOW WHAT IF WE WERE EVEN MORE PICKY, what if we wanted everyone on our websites to see exactly the same thing as we designed it.. we want them to see the design that we intended.. instead of whatever font it is that they happened to have installed.
+		for example:
+			if we were using Helvetica, then pretty much like 93% of window users are just going to see Arial, what if i really hate Arial?
+			what can i do to ensure that everybody has the same viewing experience with regards to the fonts on my website.
+
+	WELL WE COULD USE SOMETHING CALLED FONT EMBEDDING.
+	so lets head over to fonts.google.com
+		then you can see that they have got a whole bunch of font families that you can choose from. AND THESE ARE ALL FONTS THAT ARE FREE FOR COMMERCIAL USE, THAT you can simply  EMBED into your website.
+			there is a large choice of font families that you can pick through.
+
+			-you can choose if you want to just see the sans-serif 		options, the serif options, etc..
+
+			-they have these cool articles about which font-families 	go well with each other
+
+			-and a whole bunch of really really useful stuff.
+
+	but in our case we already know what it is that we want... in this case we want the font called "Merriweather" (serif) for our BODY, we are going to choose the serif typeface. its a nice looking type.
+
+	we are going to click the plus sign (+) to the right of the name.
+
+	NOW WE ARE GOING TO ADD A FEW MORE FONTS BEFORE WE START INCORPORATING THEM TOGETHER.
+
+	we will collect:
+		-"Sacramento" (handwriting)
+			and this is what we are going to use as the font for our h1 (a very stylish kind of font, where we don't really need people to read it that clearly... so its not like a body font where it will be quite painful to try and read through... 300 words all styled like this.... nah)
+
+		-"Montserrat" (sans-serif)
+			this is going to be the main heading font.
+
+so now we have got three font familes selected and we can embed it into our website as easily as compying the link, and pasting that at the top of our index.html (underneath favicon link).. and the link in the href specifies a location, where if users don't have these fonts already installed or cached on their system, then the browswer would take them to this location (href link) and grab those fonts for them.
+
+next we will copy the css and paste it into styles.css sheet.
+	in this case we will 
+	- copy and paste the Merriweather font into the body selector.
+
+	- copy and paste the Sacramento into the h1 selector
+
+	- and copy and paste the Montserrat into the h2 and h3 selector
+
+				------- FONTS CONTINUED --------
+
+now in order for us to continue styling our text and to change the text properties and also learn about differnet ways of styling our text, then we actually need a little bit more content than just these two lines of text:"I'm Chika" & "a programmer".
+
+so lets add the rest of the content to our website... we will take the stubcode(i downloaded it from the resource panel provided by instructor and created a folder called stubcode just for refernce) and paste the html into this document within the "mid-container" and the "bottom-container"
+
+ 						--- StubCode ---
+
+the StubCode is basically just the structure of our website... after haveing copied the entire file, we are going to paste it into our site.. replacing the mid-container and the bottom-container, but nothing else. 
+
+so as you  can see the subcode includes the middle container as well as the bottom container. and you replace the lorem ipsum text with some actual data if you'd like (i did).
+
+	just incase im interested in finding out what the lorem ipsum actually means or what it is, we could check out loremipsumgenerator.com to find out a little bit of history about what all of it is, where it comes from and how it came to be used in a lot of website styling and web design.
+
+now the other parts that you willhave to update are the image sources and the image alt tags,
+	- first image profile
+	- second image is for skill 1
+	- third image is for skill 2
+
+and at the bottom under the "div with the class='contact-me' we are going to have an a tag with the class of "btn" that is going to open the dault mail app (href="mailto:chikaotisi@gmail.com") or an email address of your choice ... so basically your contact email or w.e
+
+		<a class="btn" href="mailto:chikaotisi@gmail.com">CONTACT ME</a>
+
+and finally in the last section we have got 3 links that go towards any site that you wish, so thats:
+				- your LinkedIn profile
+				- your Twitter profile
+				- your Your Website
+		so now go ahead and change all of these links in there.(i did)
+
+	then change the copyright to your name so that you have a copyright at the bottom of your page.
+
+	now once you have done all of that, the next thing to do is delete all of the properties and values that we put in both our mid-container and the bottom-container css till this point:
+	example:
+			.mid-container{
+				background-color:red;
+				width:200px;
+				height:200px;
+			}
+			.bottom-container{
+				background-color:blue;
+				width:200px;
+				height:200px;
+			}
+
+			into
+
+
+			.mid-container{
+
+			}
+			.bottom-container{
+
+			}
+now when you reload your website page, everything should be centered, and it should be coming together,
+
+so the top section of our website stays unchanged because we havent touched it at all, but
+
+we should have:
+		- a profile picture of ourself
+		- a greeting word (Hello) - you can change it if you'd like
+			- with a little brief bio about myself
+		- a section called my skills
+			- going to have one image which is going to represent a skill whatever that maybe
+			- going to find another image that is going to represent your second skill, whatever that may be aswell.
+
+	**** now if you are short on images for that section and you couldn't find any in google that you liked, then take a look at this website called flaticon.com (here they've got more than half a million vector icons, which you can search and some of these are really really cool) 
+			all of these are free for commercial use as long as you give addiquate attribution.
+
+			after you have a look at each of these icons you can download them as a png in whichever size you prefer.
+
+	and you can insert those into your webpage, as a relative url
+
+	**** now if you wanted an image that was an animated gif perhaps, then a good source is to headover to giphy.com and you can search for something that you want to include.
+			if you select the sticker tab then you will get these transparent gifs which will look a lot nicer on your page because your background will go all around it instead of it being just a square or a rectangle.
+
+and finally at the bottom you've got a contact me link which takes you whatever email you want to be contacted by 
+	followed by your social links at the bottom, that go towards where ever you want it to, so this is the rest of the content for our website!
+		and for the remaining lessons we will be styling this content to make it look more and more like a professional personal site.
+
+------------------------------ CSS SIZING -------------------------
+
+so now that we have got all of our content together we can go ahead and style all of the text that we've got on our website, so in this lesson, we are going to be covering a number of font-properites; so that we can further style and make our website look the way that we want it to.
+	1. first thing that we are going to talk about is the font size (font-size) 
+		and to begin with ..for this case we want our H1 to be a lot bigger than our H2s and our H3s; so that it really stands out as the t itle of this font page.
+
+			... so let's head over to the styles.css sheet and implement that change.
+
+			so inside our h1 selector we are going to tap into the font-size property and we are going to set it to 90px;
+
+					h1{
+						font-size:90px;
+						margin-top:0;
+						font-family: 'Sacramento', cursive;
+					}
+			so this is basically the equivalent of selecting 90 in the drop down menu when you are selecting a font size in word or ppt, etc...
+
+			and now if i hit refresh then my title is going to get a lot bigger and it's going to fill most of that top page.
+			(at this point make sure that you are not zoomed in or zoomed out - that your browswer is at 100% zoom)
+
+			see currently our font-size is set to be 90px, so on certain browsers if the user goes into preferences and they change their default font-size for their webpage... for example:
+				- if they need super large text in order to see, the you will notice that font-size does not change, even though the rest of the text does.... and this is because 90px, is not a dynamic size. so in order to make it dynamic there are two ways:
+					1. instead of using px (90px); we can use a percentage (90%)
+
+	BTW- 100% in fontsize is actually just 16px
+		so if we want 90px we would have to do 
+		90 / 16 = 5.625 x 100% =562.5% in order to get the equivalent of 90px, but with dynamic ability.
+
+					so if we change the 90px into 562.5% and we reload the page we will find that nothing has changed and thats because we specified exactly the same font-size but instead we are using a percentage this time.
+
+					2. now the other way of specifying a dynamic font size is by using a unit called the em, for example if we head back onto our favorite website, techcrunch.com and we highlight the title and inspedt it, and we select the h2, we will see that it has got the class called "live-title" and its font-size is specified as "2.em" rather than however many pixels they want it to be....
+
+					now we have seen em before; inside our htmll and we used it as a tag inorder to emphasize a particular section of text ( and that, stylistically) means that it will make somethin itlicized.
+
+					now in this case, this is actually a completely differnt em, the em in this case is actually the phonetic pronounciation of the "M" - the reason is because in type setting in the olden days, the em (M -rather) is the width of the capital letter M... so that means when you say "font-size:1em;" that means you want to font-size to be the width of the capital letter M, if you 2 then thats doble the size of the M etc.... 
+
+					Now in moder days this is no longer true, but what is true is that, one em or one M is 16px, as we've seen with our percentages..
+
+
+BASICALLY RELATING TO FONT-SIZE 100% = 1em = 16px.
+
+					and that means we can achieve what ever size we want dynamically using either of these methods.
+
+					so for example as we have calculated before...
+						90px = 5.625em and so that means that if we replace the 562.5% with 5.625em no changes will be seen on the screen once we refresh. this is because they are all the same, its just using different methods to specify the same size
+
+				so then the question you might have is, why would you use one over the other? what does it matter?
+
+ANSWER: if you look on different websites, for example take Uber.com 	and inspect on their title.. we will notice that their font-size 	is specified pxs... where as on techcrunch it is specified in ems. 		and on other sites you might get percentages.
+
+	now as we mentioned before, if we change the font-size on our browser settings
+		for example:
+			lets say someone with accessibility issues, that changed the font-size setting on their browser to "very large" because they have a hard time seeing. 
+	then these static size fonts(px) do not change... they stay exactly the same size.. 
+
+	whereas the things that are dynamically sized (% and em) they do scale up, so that user who have maybe visual impairments, etc.. who might want to have a higher font-setting, will be able to view the website more comfortably. 
+
+		AND THAT IS VERY IMPORTANT IN TERMS OF MAKING YOUR WEBSITE ACCESSIBLE TO EVERYBODY...
+
+		now the argument against that is that some visual disginers say that people with visual impairment these days are more likely to zoom-in rather than changing their default font-size... and their more likely to have a higher zoom in order to read all the text on the page...
+			and with zoom, it doesn't actually matter whether if your text is statically or dynamically sized because it will just scale up the website depending on what you are asking it to do.
+
+			so maybe that's not such an important distinction between statically and dynamically sized fonts anymore but there is one thing that is really important... and thats the fact that when you are using em or when you are using percentages, that value is INHERITED..
+
+					so if i go into the body selector in the css.styles sheet and i specified a font-size for everything inside the body... (meaning everything on my website) to be say 2.em and then in my h1 i leave my font-size as the previous dynamic size (5.625em) and we save, go back to our website and hit refresh.... we will notice that our h1 has gotten absolutely gigantic... and thats because the font-size gets inherited and added on top of whatever it got from its parent.
+
+						the parent of the h1 is the body, because the h1 is contained inside of the body, and the in the body we said that the font-size:2em; across the entire body of the website, now when it gets to the h1, it has already got that 2em applied to it, and then it adds that 5.625em on top of the 2 em, which is why we end up with something so gigantic. and this is exactly the same with percentages. so if i said say.. 200% in our body selector font-size(font-size:200%;) and we change the h1 font-size to 562.5% (font-size:562.5%;) then again we still get the same results which is a gigantic sized font because the sizes are stacked together hierarchically.
+
+						but say if is said that the body font-size should instead be 20px and the h1 font-size should be 90px, then when we go back into our site and we resfresh the page, we see that the font-size of the h1 is staying at 90px, this is because pixels is again a non-dynamic measure, so it does not get affected by the body's measure (basically with pixels, it does not matter what its parent's font-size was.. because these are static sizes)
+							so this means that it could get a little bit dangerous, for example... if you wanted all the text inside your body to be 200% (which remember is 2 x 16px = 32px) - now... that works fine until you get to a point and you forgot that you did that (set the body's font-size:200%;) and over in the h1 or some other word selector (in this case h1) you ended up setting your font-size:5.625em or percentage equal...(stacking dynamic font-size), then all of the sudden its huge when you check your page, and then you will have to go back into the css or inspect the page in our chrome developer tools (the latter works best cause it tells us) and debug - to fix what you did wrong.
+
+		SO IN ORDER TO AVOID THIS one of the things we got in the latest version of CSS (which is the version that we're using currently) is CSS3, and inside css3 there is something called the REM (rem) and ----------------REM REFERS TO THE ROOT EM --------------------- what that means is ignore, all of the 						parent setting for the font-size and 						just set it to the number specified 						relative to the root.
+
+		example:
+				body{
+					margin:0;
+					text-align:center;
+					font-family: 'Merriweather' , serif;
+					font-size:200%;
+				}
+
+				h1{
+					font-size:5.625rem(root em -this cancels out the body's font-size demands for this selector)
+
+					margin-top:0;
+					font-family: 'Sacramento' , cursive;
+				}
+
+								this means that it doesn't matter what we've done to the body selector or its enclosing containers or parents, it will be 5.625 x 16pxs... as long as we add the R in front of rem.
+
+								so if we hit save in this case we will see that we get the size that we wanted because of the rem, so the beauty of the root em is that it does not get effected by upstream size changes and it means that it is easier to debug and that its less likely that something will go wrong
+
+					SO WHEN SIZING TEXT, THE PERSONAL RECOMMENDATION IS TO USE ---REM---- INSTEAD OF em or percentages or even pixels- THIS IS BECAUSE REM IS THE MOST ADAPTABLE AND ALSO THE MOST RELIABLE AND LEAST ERROR PRONE.
+
+					SO if we go back to our site and change the browsers settings (preferences) font-size back to the medium that is recomended, then you can see that we've got the exact size that we were looking for - which is the same as the 90px that we specified, but this is done using rem , rather than em or percentages.
+
+					challenge.. set font-size of h2 tag "a programmer" to be the equivalent of 40px, but we have to do it by using rem... remember 1 em/rem is 16px, 16goes into 40 2 times leaving 8. 8 is 1/2 of 16 so that 0.5 which means 2.5rem is the equivalent of 40px.
+
+	btw the body having a font-size of 200% was just for the examples we can remove it now to rest the text size.
+
+
+
+----------------------------- TOUCHING UP THE DISTANCING AND SIZE OF THE TOP CONTAINER ------------------------------
+
+
+
+	so now there is another thing that we want to do to the page... we want to add more padding to the h1 so that we can push the text more towards the center of the page.
+
+		so we can do that by simply adding a 50px margin to the top of our h1 rather than having it as 0px:
+
+				h1{
+					font-size:5.625rem;
+					margin-top:50px;
+					font-family: 'Sacramento', cursive;
+				}
+
+		now with margin top and padding and all of the other things that we use to specify the size, you can also use the em, the rem, or the percenatage (%) values. but in this case, we actually prefer to stick to using the pixels because it is more precise and it is much easier to see whats going on when you inspect it using the box model, (this is just the instructors personal preference... might use this as well), if you want to use rem, em, or percentages, thats totally fine aswell and it works exactly the same way as we've mentioned with the font sizing.
+			so basically as long as you enter something with a 50px equivalent margin, then we should end up with the same results.
+
+	one more thing that we are going to change here after we have specified the font sizes, and that's to have a little bit less space between the h1 and the h2 of the top container. because at the moment if we right click and inspect the area, we can see that the h1 has a signifcant amount of margin, before and after (top and bottom) and we would just like to get rid of that bottom margin...
+
+		so instead of specifying a margin top in the h1 we can just specify a margin using the circle short hand,, so we start of with the top 50px then we go to the right which we are going to keep as auto (to keep it centered) then we get to the bottom, which we want to be 0 and finally we have the left which we are going to keep as auto as well.
+
+				h1{
+					font-size:5.625rem;
+					margin:50px auto 0 auto;
+					font-family: 'Sacramento', cursive;
+				}
+
+		now if we hit save and hit refresh after we return to the page, we can see that  we've got a little bit less space between the h1 and the h2 and it just look a little bit more put together... no remember these are all minor tweaks and it is totally up to me to decided it i want to implement them or not, we are just adjusting this to the instructors eye.
+
+
+
+
+
+-------------------------- CHALLENGES --------------------------
+
+
+CHALLENGE 1a: set the text color for the h1 abd h2 to both be the 			   color with hex code: #66bfbf
+
+				-easy
+
+CHALLENGE 1b: set the text color for the h3 and anchor tag to be the 			color with hex code: #11999e
+
+				-easy
+
+CHALLENGE 2: change the "a programmer" subtitle font weight to normal
+
+				- to change this we target the h2 selector.
+
+CHALLENGE 3: change the line height to double what it currently is: 2
+				
+				- to change this we target the h1, with line height the prefered way to specify line-height is to give a single value, without specifying the units so just 2 instead or 2rem/em/%/px- just 2.
+
+				so this will increase the space of what ever is ontop and below the element(h1 in this case)	
+					now in this case we don't really like how it looks (instructor doesn't like it either) she says we can keep it if we'd like, but we are actually going to get rid of it after seeing how it works. i will do the same just to follow along.
+
+now our website is coming along really nicely, instructor tells us to ell free to tweak the position of the layout of any of the elements that we see on the front page and make it look the way that i want it to... (personally i would like to add a container to the site to put the text within it close to the center and away from the edges but i have a feeling shes going to get to that so i'll wait.)
+
+----------------------------- FLOATS -----------------------------
+
+we are going to utilize the float positioning system, we are going to use what we learn in order to position our skills blocks to make it look much nicer than the way it looks at the moment.
+
+1. the first thing to notice is that if we switch on pesticide you can see that we've got the skill section and inside of the skills section there are two divs.. and if you look in the code (html), then you will see exactly the same structure here (html)
+
+	so the the div with the class of skills (<div class="skills">) contains two further divs, which are the skill rows... AND IF YOU PREFER TO VISUALIZE THIS A LITTLE BIT EASIER, by seeing which is the opeing tag for the "skills" div and which is the closing one... you could head into atom (which we aren't currently using to show the indent guides, but by default the indent lines are on atom, the verticle lines that show you which divs go together)
+
+but the important thing is that we've go these 2 divs that represent 2 skill rows, and the instructor wants us to make each skill row have only a 50% the width of the screen, at the moemtns it is 100% because it is a block element but instructor wants us to change that so that it is only 50%
+
+answer: we give the skill-row class a width:50% 
+	
+			.skill-row{
+				width:50%;
+			}
+but how we see that although now we have arranged the width to no longer be 100% but 50 instead we see that the text and images are all pressed against the left side of the screen. how do we get it back into the center.
+
+answer: we give the skill-row class a margin:auto
+
+			.skill-row{
+				width:50%;
+				margin:auto;
+			}
+but now we see that the top and bottom of each of the skill rows are too close together, how do we create the space for the top and bottom but also keep the margin as auto, thus kepping the contents centered.
+
+answer: we use the margin circle short hand to add 100px before the auto.
+
+			.skill-row{
+				width:50%;
+				margin:100px auto;
+			}
+
+now the next thing that we want to do is that we want this text (both the part for the "Digital Marketing" as well as the description text as well as the other skill and description to be left aligned) can you figure out what property needs to be changed and where?
+
+answer: 
+			.skill-row{
+				width:50%;
+				margin:100px auto;
+				text-align:left;			
+			}
+
+now the next thing that we want to do is to make the paragraphs (the text in the description) a little bit more spaced apart by changing the line-height so can you double the line-height, by changing the line height property? (not too sure if she also wants to increase the line-height of the h3... but just incase im going to use .skill-row p to increase the accuracy. if she doesn't want me to use it and uses a different way then i will adjust.)
+
+answer:
+			.skill-row p{
+					line-height:2;
+			}
+			... she didn't do that she went back into the skill row, so we are going to do the same.
+
+			.skill-row{
+				width:50%;
+				margin:100px auto;
+				text-align:left;
+				line-height:2;			
+			}
+
+now the last thing that we want to do before we look into the positioning of our skill-row is that we need the images to be a lot smaller so, go ahead and change the width of the image to 25%
+
+answer: 
+	again ill use the same thing i did with the skill-row p but we will see what she wants us to do.
+
+			.skill-row img{
+				width:25%
+			}
+			... actually in this case she wanted us to use their class names... makes sense, one is called dm and the other is dd
+
+			.dd{
+				width:25%;
+			}
+
+			.wd{
+				width:25%;
+			}
+
+	now once we hit save and then we hit refresh, we can see that they are now the same size as each other even though they weren't before because they are now scaled down based on the width of their parent - which in this case is actually the skill row...
+
+	    <div class="skill-row">
+     	 	<img class="dm" src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcQ5TN1rPNlVFUa1dH-0cX6BQNkn4qBufZuwB7nNO6DZgFX-9F-D" alt="Digital Marketing photo">
+
+     	<div class="skill-row">
+     	 	<img class="dd" src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcQ5TN1rPNlVFUa1dH-0cX6BQNkn4qBufZuwB7nNO6DZgFX-9F-D" alt="Digital Marketing photo">
+
+     so it is now a quarter of the width of the skill row, which itself is only 50% the width of the entire page.
+
+SO NOW COMES THE REALLY INTERESTING THING...
+	how can i make my text... wrap around my image? I want this skill row to be a lot stouter (less in height), I want the image to remain on the left, but we want our text to be on the right of the image and wrappig around the image as necesssary.
+
+	well this where the topic of this lesson comes in and that is of course FLOATING.
+
+				------------- FLOATING --------------
+
+	so we can make the image float to the left of the text and make the text wrap around it by simply changing one property and that is the FLOAT property
+
+	so if we go into css code of our image and we change the float proerpty to float:left; --- once we refresh we will see that our image is on the left of our skill row, and our text is now wrapping around the image in order to display both of these on the same line...
+		now it looks a little bit odd -having the text right up next to the image...
+
+challenge: can you figure out a way to put 30px between the text and 			the image?
+
+			I ended up putting, a margin-right on the image.
+
+				.dd{
+					width: 25%;
+					float:left;
+					margin-right:30px;
+ 					}
+Answer: now there are a couple of ways that you can do this, you can think about either padding or margin. in this case, in order to apply a margin to a text.. it will be kind of difficult because  they are compeletely seperate at the moment, we've got a h3 and also have got a paragraph, not you could add a div to wrap them together and add a left margin to that div... but what is much easier is to simply add a margin-right to our image... (which i did already- i was right)
+
+challenge 2: make the other image float to the right and have the 			text wrap around it the same way as well as create the 30px 		space.
+
+answer.. just follow the same procejure as the last time just giving and opposite value of right and the opposite property of margin-left.
+
+
+the webpage looks good and we are getting super close to our end result that we are looking for... 
+
+	now sometimes, when you float an element you might now want all of the text to be wrapped around it.
+
+			for example:
+
+				say if we only wanted that title (<h3>Design & Development</h3>) to wrap around the image and to be on the right of the image, then we can actually use another property to make sure that this text does not wrap and end up at the bottom of the image (below the image)
+
+				AND THAT PROPERTY IS CALLED CLEAR
+
+				so if i target the paragraph (under Design & Development) and lets give that paragraph a class called "code-skill-description" and we went over to the css and used the clear property to clear its left side...(the left side of the paragraph... in this case there is the image is floated to the left and the paragraph is on the right so clearing its left side refers to the side closer to the image), then that prevents it from wrapping on the left. 
+
+				so lets go ahead and try that..
+
+					.code-skill-description{
+							clear:left;
+					}
+
+	hit save and then refresh the webpage, you can see that the paragraph is push below the image which is floating but that heading that h3 is still wrapping around the image, that is floating to the left.
+
+	if you think about clear and almost like the anti float, then it starts to make a little more sense..
+
+	so in essence we are saying float this image to the left and all text will wrap around it on the right, but for this pargraph, we said to clear its left (which means make sure that that left margin is clear and not wrapped around anything - using the class on the p "code-skill-description") and this basically prevents it from carrying out the default behavior.
+
+
+	CHALLENGE: can you make the other paragraph related to the 				      other skill and image, appear below the image 					rather than wrapped around it?
+
+	so all we have to do is create another class similar to the one above .. and target the p tag while doing so... and give that class the property of clear and this time a value of right
+	clear:right;
+
+					.code-skill-description2{
+							clear:right;
+					}
+
+answer: alright so it is exactly the same concept here, so lets go ahead and give that paragraph a class, (which i did, although she named it differently) and again she used clear property, and cleared the same side i chose. as she explained, we can see that the paragraph no appears below the image and is prevented from wrapping the image thats floated to the right...
+
+now she actually went ahead and deleted the lates two classes that we used to clear reverting it back to what it was before... and now it has reverted back to its original form... the clear was just for informational purposes.
+
+
+now as they say with great power comes great responsibility, float is one of the most commonly used and abused css properties...  THE THING TO REMEMBER IS THAT it has a whole bunch of corner cases... and the instructor (Angela Yu) recommends to ONLY use float when really really necessary and ONLY use it for what its meant for (which is wrapping text around a certain element) AND DONT USE IT FOR POSITIONING... INSTEAD USE WHAT WE LEARND (STATIC, RELATIVE, ABSOLUTE, FIXED for the layout and positioning of the website and leave the float property only for the cases of wrapping text) - this way you will surely get into less trouble and less problems than if you  tried to use a float just as a  sort of free-for-all layout property... which you see a lot of people mistakenly do.
+
+
+so we are really really close to the end of this module.
+
+
+
+-------------------------- CSS CHALLENGE -------------------------
+
+she gave us a pdf to finish making the look of the rest of the layout of the webpage, she only gave us an image of what the actual end goal should look like and some color (#xxxxxx) so starting from top to bottom on things that we haven't taken care of:
+
+- text: color:#40514e;
+
+i ended up taking a crack at it on my own and ended up with similar results... as best as i could, the only thing that i didn't get completely right was the make out of the "CONTACT ME" button. so lets see the differneces in her and my css and see if there are easier ways that what i did.
+
+
+			----------- WHAT I DID: -----------
+
+
+
+body{
+	margin:0;
+	text-align: center;
+	font-family: 'Merriweather', serif;
+
+}
+
+h1{
+	font-size:5.625rem;
+	margin:50px auto 0 auto;
+	font-family: 'Sacramento', cursive;
+	color:#66bfbf;
+}
+
+h2{
+	font-family: 'Montserrat', sans-serif;
+	font-size:2.5rem;
+	color:#66bfbf;
+	font-weight: normal;
+
+}
+
+h3{
+	font-family: 'Montserrat', sans-serif;
+	color:#11999e;
+}
+
+a{
+	color:#11999e;
+
+}
+
+hr{
+	border-style:none;
+	border-top-style:dotted;
+	border-width: 9px;
+	width:5%;
+	margin-bottom:100px;
+	border-color:#eaf6f6;
+
+}
+
+
+/********************* GLOBAL ***************************/
+
+
+
+.top-container{
+	
+	background-color: #e4f9f5;
+	position:relative;
+	padding-top:100px;
+
+}
+.mid-container{
+
+}
+.bottom-container{
+
+}
+.pro{
+	text-decoration:underline;
+}
+.top-cloud{
+	position:absolute;
+	right:300px;
+	top:50px;
+	
+}
+.bottom-cloud{
+	position:absolute;
+	left:300px;
+	bottom:300px;
+}
+.profile{
+	width:45%;
+	margin:81px auto;
+}
+.head-description{
+	color:#40514e;
+	line-height: 2;
+}
+
+.pic{
+	border-radius:100%;
+}
+.skills{
+}
+.skill-row{
+	width:50%;
+	margin: 100px auto;
+	overflow: hidden;
+	text-align: left;
+	line-height: 2;
+}
+/*.skill-row p{
+	line-height:2;
+}
+*/
+/*.skill-row img{
+	width:25%;
+}
+*/
+.dd{
+	width: 25%;
+	float:left;
+	margin-right:30px;
+}
+.dm{
+	width: 25%;
+	float:right;
+	margin-left:30px;
+}
+
+.contact-me{
+	line-height: 2;
+	width:45%;
+	margin:auto;
+}
+
+.contact-me p{
+	margin-bottom:54px;
+}
+
+.btn{
+	font-family: 'Montserrat', sans-serif;
+	color:#eaf6f6;
+	text-decoration: none;
+	border:none;
+	border-radius:5%;
+	padding:10px;
+	background-color: #11999e;
+}
+.footer-link{
+	display: inline;
+	padding-right:36px;
+	text-decoration:none;
+	font-family: 'Montserrat', sans-serif;
+	color:#11999e;
+}
+
+.bottom-container{
+	margin-top:36px;
+	padding:27px;
+	text-align: center;
+	background-color: #66bfbf;
+}
+
+
+.bottom-container p{
+	color:#eaf6f6;
+	font-size: .75rem;
+}
+
+
+
+			-------- WHAT SHE DID: --------
+
+1. so the the first thing that she wanted to change is that she wanted to change the body text color to a slightly off black.. and that is the color that she specified (#40514e) and that gives it this grey-ish color that we are going to implament for the text, inside our website, and that just makes it look a little more designed than previously, but its still highly readable... so be careful about using really light grey when you are changing the body color, because if there is not enough contrast with the background color then it can make it really difficult not just for people with visual impairment but even for normal people it will be a strain on their eyes. so always go for something dark and high contrast
+
+2. now the next that i want is to have a little bit more padding between the h2s and the text below them. for example she wants a little bit more space between the "Hello" and the bio and also the "My Skills" and the skills section. so lets head over to our h2 and add that padding-bottom, and she added about 10pxs... so you can see that the effect is really subtle but it helps to space things out a little bit.
+
+3. now the next thing that she wants is a bit of space between the middle section and the top section. so we are going to add again 100px of padding and 100px of padding to the bottom to space it out between the middle the top and the bottom containers, but i don't want to add any further margin to the left and right so im going to leave it as zero so that it is stuck to the left and right size of the viewport (which is the screen). so in order to do that we are going to go to the "mid-container" selector and use the short hand and use 100px for the top and bottom  and 0 for the left and right. and once we save and hit refresh on the webpage we will see that we've got a good bit of space between the top and the bottom containers, and that looks a lot more natural than before.
+
+
+4. now  the next thing that i'm going to do is that i want to format the little bit of bio (p - underneath the "Hello") so that it is less in width and so that you can have a few more lines rather than just a long line that is quite hard to read and so we can do that by changing its width. so if i go into my index.html and see that i already have this class for the paragraph (she calls it "intro" i already had named it something else previously "head-description" so there is really no need to change the name, ill just see what the other values are that I need to change if any.) and then we can target it inside our styles.css and she changed the width to only 30% of it's parent container which is ofcourse the mid-container (and when we hit refresh we can see that it is a lot more less in width and that it is now taking up three lines, which is much easier to read rather than 1 big line) but the problem is now  that it is left aligned and it is no longer in the center of our webpage ( and this is because it is no longer edge to edge and we now have to set the margin to auto in order to get it centered in the webpage which is exactly what we want.) so we are goin to go ahead and add a margin auto as well
+
+5. so one of the things that she added was also to make the line height double what it used to be and that spaces out the text and makes it easier to read and we want to do that consistently across my website (so for the intro as well as the other parts of text).. so instead of having that line-height down in the skills row section, I am actually going to cut that and add that to a paragraph level selector (p) css rule. so im targeting all the paragraphs inside my website and i'm changing all of their line-heights into double the heights that it used to be, and this makes it a lot more spaced out and a lot easier to read.
+
+6. now finally we just want to adjust the clouds a little bit, (which i did not end up touching) just based on what she (we) prefer it to look like... so we are going to change the top cloud to have a top:40px rather than 50px (to make it close to the top)and we are going to make the bottom cloud only have a left of 250px rather than 300px (to make it go further to the left)
+
+	OKAY TOP SECTION IS DONE NOW THE NEXT THING WE NEED TO LOOK AT IS....... <HR>
+
+
+7. at the moment the horizontal rule is looking a little bit ugly but as we did previously we managed to get these grey dots to show up as the horizontal rule seperating the sections instead and that is what we want to do here also... so lets go ahead and target the hr. we are going to :
+	1. border
+			- change the border so that it has a dotted style.
+			border:dotted;
+
+			- change the color to a light grey (#eaf6f6)
+			border:dotted #eaf6f6 
+
+			- change the size to 6px with width
+			border: dotted #eaf6f6 6px;
+
+
+		now you can see that theres now two borders (one above and one below) and encloseing a 0 px height horizontal rule... so if we now go and set:
+	2. border-bottom
+			- change to none, then we can get rid of that bottom border to only have a single line which looks close to the way that we want it to
+			border-bottom:none;
+
+		so the next thing to do is to change:
+	3. width
+			- we want it a lot narrower than what it is, in fact we only want it to be about maybe 4% of the width... and it is important that you use percent here so that it scales when your website scales.. mobile compatibility (friendly)
+			width:4%;
+
+		and finally we need to give it some margin cause at the moment it is far to close to everything else. 
+
+	4. margin
+			- we want it to have 100px of margin top and 100px of margin bottom and we want it to be centered so it will have a margin of auto for both the left and the right
+			margin:100px auto;
+
+
+	OKAY HORIZONTAL RULE IS DONE, WHAT WE NEED NOW IS TO GET TO THE CONTACT SECTION.
+
+	1. and the fisrt thing that we want to do is similar to the into/bio text, we need to make this contact me messsage a little bit less wide so lets target that and change its width. when we check our html code we see that there is a class on the p tag within the div with the class of contact-me... (she named it "contact-message" i didn't name it at all and will follow her lead. * i actually specifically targeted the p tag in the contact-me section by stating the rule ".contact-me p{}" but again i will follow her lead) we are going to change the width to 40% and we want to give it a margin of 40px for the top, centered/auto for the left and right and 60px for the bottom..  so it will look like: margin: 40px auto 60px; once we hit save a refresh we will see that we have margin where we want it to be with more on the bottom, and it is all centered just the way we want it to be.
+
+
+
+	OKAY TIME FOR THE BUTTON CREATION
+
+
+	1. now the final thing in this section is of course changing that contact me button from the horrible ugly looking thing to something that looks a little bit more like a real button... and for this we areoing to use the css button generator for this case
+
+		1. go to css3buttongenerator.com
+
+		2. change the text to "CONTACT ME" (ALL CAPS)
+
+		3. font-family we will leave as arial for now
+
+		4. the font-color is going to be white #ffffff
+
+		5. the font-size we are going to leave as 20px
+
+		6. don't change anything in the box category but we are going to change the border specifically the border raidus
+
+		8. change border-radius to 8 so that it is a little bit more square looking rather than rounded
+
+		9. not going to. have a border
+
+		10. in the background category it is going to have a gradient background
+
+		11. change the start color to #11cdd4
+
+		12. change end color to #11999e
+
+		13. head over to hover category
+
+		14. change start color to #30e3cb
+
+		15. change end color to #2bc4ad
+
+and now you can see that when you hover over it it is a little bit lighter to show a shade of green (looks pretty nice)
+
+		16. when you scroll a little further to the bottom you will find an automatically generated css code that can copy and paste based on all of the options that we selected (1-16) and paste it into our css.
+
+		17. the last thing that we want to change is that we want to change the text so that it fits in with our font-family so will copy the font-family from h2 and paste it into the btn class.
+
+
+	OKAY NOW WE ARE FINALLY READY TO TACKLE THE BOTTOM SECTION OF THE PAGE (FOOTER)
+
+	1. the first thing that we want to do is that we want to change the background color so that we can see the differnece between the footer and the middle section, and we will do this by adding to the bottom-container 
+
+		1. change background-color to #66bfbf 
+
+		2. add padding of 50px (top), 0px(left and right), and 20px (bottom).
+
+
+	2. next lets style our anchor tags, currnetly they are little bit too squished up together and it is not looking very nice, so lets go ahead an target them by targeting all of the anchor tags.. 
+
+		1. first change the text color (color) to #11999e (which i did.)
+
+REMEMBER, TEACHER SAYS THAT USUALLY WE DON'T WANT TO TEXT IN THE FOOTER TO DISTRACT FROM THE MAIN MESSAGE. (WHICH IS EITHER "CONTACT ME" OR WHATEVER ELSE YOU WANTED TO HIGHLIGHT THAT IS CLOSE BY. SO WE WANT TO HAVE A LITTLE MORE MUTED)
+
+		2. so lets make this text look a little bit more inlined with the rest of our text, you can see that the anchor text is actually styled in a different font from the rest of our text so we can change that to what we've got for the rest of our h2. (font-family: 'Montserrat', sans-serif;) and add it into our anchor rule (a)
+
+		3. now all we need to do is space them apart from each other a little bit so that they can be easily distinguished from each other, so to do that we are going to have to add a bit of margin to it. 
+
+			- margin:10px 20px;
+
+		to give it more space away from each other and this way we can click on them individully easily, without having them all mushed together.
+
+		4. the final thing that we don't like about this look is that by default all anchor tags have an underline that shows you that it is clickable... and we want to show that in a differnt way.. we want the underlines to only appear during the hover state. 
+
+				- change the text-decoration of the anchor tag selector rule (a) into none
+				text-decoration:none;
+
+
+
+		hover state...
+
+				- change color to color:#eaf6f6;
+
+				- text-decoration: underline; (i did this seperately from instructor - she didn't do this... its my little touch)
+
+
+
+
+NOW THE VERY LAST THING THAT WE ARE GOING TO CHANGE IS THE P IN THE FOOTER
+
+		1. we are oing to change it's color to make it less assuming and also make it a little bit smaller.
+
+		2. teacher added a class to the p in the footer called "copyright" (naturally i didn't do it originally but i added it just recently to follow along.) 
+
+		3. put the class into the css and change the color to #eaf6f6
+
+		4. now we make it a lot smaller by changing the font-size to 0.75rem (which i definitely did before... approximately 12px) now it looks less important and is taking up less space as well.
+
+		5. we want to give it a little bit more padding from the top and the bottom - padding:20px 0; so that it goees allthe way to the end and that way it has got a little bit more seperation from the top and this looks a lot nicer than before.
+
+
+	AND THAT IS IT.
+
+
+
+
+body{
+	color:#40514e;
+	margin:0;
+	text-align: center;
+	font-family: 'Merriweather', serif;
+}
+
+h1{
+	font-size:5.625rem;
+	margin:50px auto 0 auto;
+	font-family: 'Sacramento', cursive;
+	color:#66bfbf;
+}
+
+h2{
+	color:#66bfbf;
+	font-family: 'Montserrat', sans-serif;
+	font-size:2.5rem;
+	font-weight: normal;
+	padding-bottom:10px;
+
+}
+
+h3{
+	font-family: 'Montserrat', sans-serif;
+	color:#11999e;
+}
+
+a{
+	color:#11999e;
+	font-family: 'Montserrat', sans-serif;
+	margin:10px 20px;
+	text-decoration:none;
+
+}
+
+a:hover{
+	text-decoration:underline;
+	color:#eaf6f6;
+}
+
+hr{
+	border:dotted #eaf6f6 6px;
+	border-bottom:none;
+	width:4%;
+	margin:100px auto; 
+
+}
+
+p{
+	line-height: 2;
+}
+
+
+/********************* GLOBAL ***************************/
+
+
+
+.top-container{
+	
+	background-color: #e4f9f5;
+	position:relative;
+	padding-top:100px;
+
+}
+
+.mid-container{
+	margin:100px 0;
+}
+
+.bottom-container{
+	background-color:#66bfbf;
+	padding:50px 0 20px;
+}
+
+.pro{
+	text-decoration:underline;
+}
+
+.top-cloud{
+	position:absolute;
+	right:300px;
+	top:40px;
+	
+}
+
+.bottom-cloud{
+	position:absolute;
+	left:250px;
+	bottom:300px;
+}
+
+.profile{
+	width:45%;
+	margin:81px auto;
+}
+
+.head-description{
+	width:30%;
+	margin:auto;
+	
+}
+
+.pic{
+	border-radius:100%;
+}
+
+.copyright{
+	color:#eaf6f6;
+	font-size:0.75rem;
+	padding:20px 0;
+}
+
+.skill-row{
+	width:50%;
+	margin: 100px auto;
+	overflow: hidden;
+	text-align: left;
+	
+}
+
+/*.skill-row p{
+	line-height:2;
+}
+*/
+/*.skill-row img{
+	width:25%;
+}
+*/
+.dd{
+	width: 25%;
+	float:left;
+	margin-right:30px;
+}
+
+.dm{
+	width: 25%;
+	float:right;
+	margin-left:30px;
+}
+
+.contact-me{
+	
+	width:45%;
+	margin:auto;
+}
+
+.contact-message{
+	width:40%
+	magin:40px auto 60px;
+}
+
+.butn {
+  background: #11cdd4;
+  background-image: -webkit-linear-gradient(top, #11cdd4, #11999e);
+  background-image: -moz-linear-gradient(top, #11cdd4, #11999e);
+  background-image: -ms-linear-gradient(top, #11cdd4, #11999e);
+  background-image: -o-linear-gradient(top, #11cdd4, #11999e);
+  background-image: linear-gradient(to bottom, #11cdd4, #11999e);
+  -webkit-border-radius: 8;
+  -moz-border-radius: 8;
+  border-radius: 8px;
+  font-family: 'Montserrat', sans-serif;
+  color: #ffffff;
+  font-size: 20px;
+  padding: 10px 20px 10px 20px;
+  text-decoration: none;
+}
+
+.butn:hover {
+  background: #30e3cb;
+  background-image: -webkit-linear-gradient(top, #30e3cb, #2bc4ad);
+  background-image: -moz-linear-gradient(top, #30e3cb, #2bc4ad);
+  background-image: -ms-linear-gradient(top, #30e3cb, #2bc4ad);
+  background-image: -o-linear-gradient(top, #30e3cb, #2bc4ad);
+  background-image: linear-gradient(to bottom, #30e3cb, #2bc4ad);
+  text-decoration: none;
+}
+
+
+
+
+THE LAST STEP IS TO POST THIS SITE ON GITHUB AND THEN, WE CAN SHOW IT TO OUR FRIENDS AND EVEN ANYONE THAT WANT TO EMPLOY US.
+
+
+
+
+
+-->
+	<div class="top-container">
+		<img src="images/cloud.png" class="top-cloud" alt="cloud-img">
+		<h1>I'm Chika.</h1>
+		<h2>a <span class="pro">pro</span>grammer.</h2>
+		<img class="bottom-cloud" src="images/cloud.png" alt="cloud-img">
+		<img src="images/mountain.png" alt="mountain-img">
+	</div>
+
+	<div class="mid-container">
+  	<div class="profile">
+    	<img class="pic" src="images/chikablueshirt.jpeg" alt="">
+
+    	<h2>Hello.</h2>
+    	<p class="head-description">CEO of <span><em>Chika Otisi Digital</em></span>. Programming, marketing, sustainability and motorcycles oh, and lets not forget love.</p>
+
+  	</div>
+  	<hr>
+
+  	<div class="skills">
+    	<h2>My Skills.</h2>
+
+    		    <div class="skill-row">
+	      	<img class="dd" src="data:image/jpeg;base64,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" alt="Web Desgin picture">
+
+	      	<h3>Design & Development</h3>
+	     	 <p>I have been designing websites on the web for over 3 months, the joy that comes from seeing a creation being displayed and shared across the world is amazing and brings a tear to the eye.</p>
+
+	    </div>
+
+    	<div class="skill-row">
+     	 	<img class="dm" src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcQ5TN1rPNlVFUa1dH-0cX6BQNkn4qBufZuwB7nNO6DZgFX-9F-D" alt="Digital Marketing photo">
+
+	      	<h3>Digital Marketing</h3>
+	      	<p>Marketing is a long long passion of mine. There are somethings that you can't seem to fully take away in this world and that is the extravigant feeling of helping others with products and services that are benificial and without marketing, where will those companies be... definitely not in the face of those in need.</p>
+
+	    </div>
+
+  	</div>
+
+  	<hr>
+  	<div class="contact-me">
+
+    	<h2>Get In Touch</h2>
+    	<h3>Like what you see and want to learn more?</h3>
+    	<p class="contact-message">Don't be afraid to contact, let's connect and have the beautiful chance of creating something wonderful with our minds combined.</p>
+
+    	<a class="butn" href="mailto:chikaotisi@gmail.com">CONTACT ME</a>
+    	<br><br><br>
+
+  	</div>
+	</div>
+
+
+<div class="bottom-container">
+
+  <a class="footer-link" href="https://www.linkedin.com/in/chika-otisi-0335a4186">LinkedIn</a>
+  <a class="footer-link" href="https://twitter.com/chikaotisi">Twitter</a>
+  <a class="footer-link" href="https://www.facebook.com/chikaotisidigital">Facebook</a>
+  <a class="footer-link" href="https://chika693.github.io/cv/">CV</a>
+  <p class="copyright">© 2018 Chika Otisi.</p>
+
+</div>
+
+	
+</body>
+</html>
